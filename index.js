@@ -121,3 +121,23 @@ resetBtn.addEventListener('click',()=>{
         timerStopBtn.style.display = 'none'
     }
 })
+
+
+// adding fullscreen to the button
+const fullscreenBtn = document.querySelector('.fa-expand')
+const myTimerSection = document.querySelector('.timer-section')
+
+fullscreenBtn.addEventListener('click',()=>{
+    if(getFullscreenElement()){
+        document.exitFullscreen()
+    }else{
+        myTimerSection.requestFullscreen().catch( e => console.log(e))
+    }
+})
+
+function getFullscreenElement(){
+    return document.fullscreenElement 
+        || document.webKitFullscreenElement
+        || document.mozFullscreenElement
+        || document.msFullscreenElement
+}
