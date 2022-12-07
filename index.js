@@ -28,6 +28,11 @@ stopBtn.addEventListener('click',()=>{
     volumeIcon.style.display = 'none'
     timeline.style.display = 'none'
 
+    // removing timer input if it was on
+    if(timerInput.style.display == 'block'){
+        timerInput.style.display = 'none'
+    }
+
     //fixing buggs
     startBtn.style.display = 'inline-block'
     timerStopBtn.style.display = 'none'
@@ -214,4 +219,36 @@ window.addEventListener('load',()=>{
             }
         },1000)
     }
+})
+
+
+//input for the timer code
+const timerInput = document.querySelector('.timer-counter-input')
+
+timerInput.addEventListener('keypress',(e)=>{
+    if(e.key == "Enter"){
+        console.log(timerInput.value.split(''));
+        let timerTimeArray = timerInput.value.split('');
+        let timerMinutesValue = `${timerTimeArray[0]? timerTimeArray[0] : 0}${timerTimeArray[1]? timerTimeArray[1] : 0}` 
+        let timerSecondsValue = `${timerTimeArray[2]? timerTimeArray[2] : 0}${timerTimeArray[3]? timerTimeArray[3] : 0}`
+        console.log(`timerMinutesValue = ${timerMinutesValue} and timerSecondsValue = ${timerSecondsValue}`);
+        timerCounter.style.display = 'block'
+        timerInput.style.display = 'none'
+        timerMinutes.textContent = timerMinutesValue 
+        timerSeconds.textContent = timerSecondsValue 
+    }
+})
+
+
+
+// showing input when clicking on the div
+
+timerCounter.addEventListener('click',()=>{
+    console.log('timer counter was clicked');
+    timerCounter.style.display = 'none'
+    timerInput.style.display = 'block'
+    clearInterval(timerInterval)
+    startBtn.style.display = 'inline-block'
+    timerStopBtn.style.display = 'none'
+    timerInput.value = `${timerMinutes.textContent}:${timerSeconds.textContent}`
 })
