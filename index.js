@@ -16,6 +16,7 @@ const stopMSeconds = document.querySelector('.stop-mSeconds')
 const volumeIcon = document.querySelector('.fa-volume-low')
 const timeline = document.querySelector('.timeline')
 
+const alarmAudio = new Audio('alarm.mp3')
 
 
 // stop watch tap button
@@ -71,6 +72,7 @@ startBtn.addEventListener('click',()=>{
         timerCounter.style.borderBottom = 'none'
         timerInterval = setInterval(()=>{
             if(timerSeconds.textContent == 00 && timerMinutes.textContent == 0){
+                alarmAudio.play();
                 clearInterval(timerinter)
             }else if(timerSeconds.textContent == 00){
                 timerSeconds.textContent = 59;
@@ -130,6 +132,7 @@ startBtn.addEventListener('click',()=>{
 timerStopBtn.addEventListener('click',()=>{
     // stoping timer events when clicking stop button
     if(timerBtn.classList[1] === 'active'){
+        alarmAudio.pause()
         clearInterval(timerInterval)
         startBtn.style.display = 'inline-block'
         timerStopBtn.style.display = 'none'
@@ -147,6 +150,7 @@ timerStopBtn.addEventListener('click',()=>{
 resetBtn.addEventListener('click',()=>{
     // reseting timer when clicking reset button
     if(timerBtn.classList[1] === 'active'){
+        alarmAudio.pause()
         clearInterval(timerInterval)
         timerMinutes.textContent = 5;
         timerSeconds.textContent = '00';
