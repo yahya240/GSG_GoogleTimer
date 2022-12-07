@@ -48,6 +48,11 @@ timerBtn.addEventListener('click',()=>{
     volumeIcon.style.display = 'inline-block'
     timeline.style.display = 'block'
 
+    // removing timer input if it was on
+    if(timerInput.style.display == 'block'){
+        timerInput.style.display = 'none'
+    }
+
     //fixing buggs
     startBtn.style.display = 'inline-block'
     timerStopBtn.style.display = 'none'
