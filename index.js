@@ -17,6 +17,7 @@ const volumeIcon = document.querySelector('.fa-volume-low')
 const timeline = document.querySelector('.timeline')
 
 
+
 // stop watch tap button
 stopBtn.addEventListener('click',()=>{
     stopBtn.classList.add('active')
@@ -26,6 +27,10 @@ stopBtn.addEventListener('click',()=>{
     stopCounter.style.display = 'block'
     volumeIcon.style.display = 'none'
     timeline.style.display = 'none'
+
+    //fixing buggs
+    startBtn.style.display = 'inline-block'
+    timerStopBtn.style.display = 'none'
 })
 
 // timer tap button
@@ -37,6 +42,10 @@ timerBtn.addEventListener('click',()=>{
     timerCounter.style.display = 'block'
     volumeIcon.style.display = 'inline-block'
     timeline.style.display = 'block'
+
+    //fixing buggs
+    startBtn.style.display = 'inline-block'
+    timerStopBtn.style.display = 'none'
 })
 
 // setInterval declerations 
@@ -59,10 +68,22 @@ startBtn.addEventListener('click',()=>{
                 timeLineWidth = timeLineWidth+2.03;
                 timeline.style.width = `${timeLineWidth}px`
 
+                // fixing buggs
+                if(timerBtn.classList[1] === 'active' && timerStopBtn.style.display == 'none'){
+                    startBtn.style.display = 'none'
+                    timerStopBtn.style.display = 'inline-block'
+                }
+
             }else{
                 timerSeconds.textContent-=1;
                 timeLineWidth = timeLineWidth+2.03;
                 timeline.style.width = `${timeLineWidth}px`
+
+                // fixing buggs
+                if(timerBtn.classList[1] === 'active' && timerStopBtn.style.display == 'none'){
+                    startBtn.style.display = 'none'
+                    timerStopBtn.style.display = 'inline-block'
+                }
             }
         },1000)
     }
@@ -74,10 +95,23 @@ startBtn.addEventListener('click',()=>{
         counterInterval = setInterval(()=>{
             if(stopMSeconds.textContent < 99){
                 stopMSeconds.textContent = Number(stopMSeconds.textContent)+1;
+
+                
+                // fixing buggs
+                if(stopBtn.classList[1] === 'active' && timerStopBtn.style.display == 'none'){
+                    startBtn.style.display = 'none'
+                    timerStopBtn.style.display = 'inline-block'
+                }
             }else{
                 stopSeconds.textContent = Number(stopSeconds.textContent)+1;
                 stopMSeconds.textContent = 0;
                 stopMSeconds.textContent = stopMSeconds.textContent +1;
+
+                // fixing buggs
+                if(stopBtn.classList[1] === 'active' && timerStopBtn.style.display == 'none'){
+                    startBtn.style.display = 'none'
+                    timerStopBtn.style.display = 'inline-block'
+                }
             }
         },10)
     }
@@ -143,6 +177,7 @@ function getFullscreenElement(){
 }
 
 
+
 // adding onload eventlistener 
 window.addEventListener('load',()=>{
     // changes on timer when we load the page for first time
@@ -160,10 +195,22 @@ window.addEventListener('load',()=>{
                 timeLineWidth = timeLineWidth+2.03;
                 timeline.style.width = `${timeLineWidth}px`
 
+                // fixing buggs
+                if(timerBtn.classList[1] === 'active' && timerStopBtn.style.display == 'none'){
+                    startBtn.style.display = 'none'
+                    timerStopBtn.style.display = 'inline-block'
+                }
+
             }else{
                 timerSeconds.textContent-=1;
                 timeLineWidth = timeLineWidth+2.03;
                 timeline.style.width = `${timeLineWidth}px`
+
+                // fixing buggs
+                if(timerBtn.classList[1] === 'active' && timerStopBtn.style.display == 'none'){
+                    startBtn.style.display = 'none'
+                    timerStopBtn.style.display = 'inline-block'
+                }
             }
         },1000)
     }
