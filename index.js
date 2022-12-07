@@ -141,3 +141,30 @@ function getFullscreenElement(){
         || document.mozFullscreenElement
         || document.msFullscreenElement
 }
+
+
+// adding onload eventlistener 
+window.addEventListener('load',()=>{
+    // changes on timer when we load the page for first time
+    if(timerBtn.classList[1] === 'active'){
+        startBtn.style.display = 'none'
+        timerStopBtn.style.display = 'inline-block'
+        let timeLineWidth = timeline.offsetWidth;
+        timerCounter.style.borderBottom = 'none'
+        timerInterval = setInterval(()=>{
+            if(timerSeconds.textContent == 00 && timerMinutes.textContent == 0){
+                clearInterval(timerinter)
+            }else if(timerSeconds.textContent == 00){
+                timerSeconds.textContent = 59;
+                timerMinutes.textContent = timerMinutes.textContent-1
+                timeLineWidth = timeLineWidth+2.03;
+                timeline.style.width = `${timeLineWidth}px`
+
+            }else{
+                timerSeconds.textContent-=1;
+                timeLineWidth = timeLineWidth+2.03;
+                timeline.style.width = `${timeLineWidth}px`
+            }
+        },1000)
+    }
+})
